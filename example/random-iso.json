@@ -40,7 +40,7 @@
     "duration": 100
    },
    "rando 5.aseprite": {
-    "frame": { "x": 2560, "y": 0, "w": 512, "h": 512 },
+    "frame": { "x": 0, "y": 512, "w": 512, "h": 512 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 512, "h": 512 },
@@ -48,7 +48,7 @@
     "duration": 100
    },
    "rando 6.aseprite": {
-    "frame": { "x": 3072, "y": 0, "w": 512, "h": 512 },
+    "frame": { "x": 512, "y": 512, "w": 512, "h": 512 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 512, "h": 512 },
@@ -56,7 +56,7 @@
     "duration": 100
    },
    "rando 7.aseprite": {
-    "frame": { "x": 3584, "y": 0, "w": 512, "h": 512 },
+    "frame": { "x": 1024, "y": 512, "w": 512, "h": 512 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 512, "h": 512 },
@@ -64,7 +64,7 @@
     "duration": 100
    },
    "rando 8.aseprite": {
-    "frame": { "x": 4096, "y": 0, "w": 512, "h": 512 },
+    "frame": { "x": 1536, "y": 512, "w": 512, "h": 512 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 512, "h": 512 },
@@ -72,7 +72,7 @@
     "duration": 100
    },
    "rando 9.aseprite": {
-    "frame": { "x": 4608, "y": 0, "w": 512, "h": 512 },
+    "frame": { "x": 2048, "y": 512, "w": 512, "h": 512 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 512, "h": 512 },
@@ -80,7 +80,7 @@
     "duration": 100
    },
    "rando 10.aseprite": {
-    "frame": { "x": 5120, "y": 0, "w": 512, "h": 512 },
+    "frame": { "x": 0, "y": 1024, "w": 512, "h": 512 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 512, "h": 512 },
@@ -88,7 +88,7 @@
     "duration": 100
    },
    "rando 11.aseprite": {
-    "frame": { "x": 5632, "y": 0, "w": 512, "h": 512 },
+    "frame": { "x": 512, "y": 1024, "w": 512, "h": 512 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 512, "h": 512 },
@@ -96,7 +96,7 @@
     "duration": 100
    },
    "rando 12.aseprite": {
-    "frame": { "x": 6144, "y": 0, "w": 512, "h": 512 },
+    "frame": { "x": 1024, "y": 1024, "w": 512, "h": 512 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 512, "h": 512 },
@@ -104,7 +104,7 @@
     "duration": 100
    },
    "rando 13.aseprite": {
-    "frame": { "x": 6656, "y": 0, "w": 512, "h": 512 },
+    "frame": { "x": 1536, "y": 1024, "w": 512, "h": 512 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 512, "h": 512 },
@@ -112,7 +112,7 @@
     "duration": 100
    },
    "rando 14.aseprite": {
-    "frame": { "x": 7168, "y": 0, "w": 512, "h": 512 },
+    "frame": { "x": 2048, "y": 1024, "w": 512, "h": 512 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 512, "h": 512 },
@@ -120,7 +120,7 @@
     "duration": 100
    },
    "rando 15.aseprite": {
-    "frame": { "x": 7680, "y": 0, "w": 512, "h": 512 },
+    "frame": { "x": 0, "y": 1536, "w": 512, "h": 512 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 512, "h": 512 },
@@ -128,7 +128,7 @@
     "duration": 100
    },
    "rando 16.aseprite": {
-    "frame": { "x": 8192, "y": 0, "w": 512, "h": 512 },
+    "frame": { "x": 512, "y": 1536, "w": 512, "h": 512 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 512, "h": 512 },
@@ -136,7 +136,7 @@
     "duration": 100
    },
    "rando 17.aseprite": {
-    "frame": { "x": 8704, "y": 0, "w": 512, "h": 512 },
+    "frame": { "x": 1024, "y": 1536, "w": 512, "h": 512 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 512, "h": 512 },
@@ -149,7 +149,7 @@
   "version": "1.3.11-arm64",
   "image": "random-iso.png",
   "format": "RGBA8888",
-  "size": { "w": 9216, "h": 512 },
+  "size": { "w": 2560, "h": 2048 },
   "scale": "1",
   "frameTags": [
    { "name": "Tongue", "from": 14, "to": 17, "direction": "pingpong", "color": "#fe5b59ff" }
