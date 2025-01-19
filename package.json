@@ -1,8 +1,8 @@
 {
-  "name": "bun-template",
-  "module": "src/index.tsx",
-  "description": "Bun template for creating projects using bunjs",
-  "version": "1.0.65",
+  "name": "aseprite-sheet",
+  "module": "src/index.ts",
+  "description": "Component that will read spritesheet data from ASEPRITE for use in animations and games",
+  "version": "1.0.0",
   "keywords": [
     "bun",
     "bunjs",
@@ -15,11 +15,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:jacklehamster/bun-template.git"
+    "url": "https://github.com/jacklehamster/aseprite-sheet.git"
   },
-  "homepage": "https://jacklehamster.github.io/bun-template/",
+  "homepage": "<fill in homepage>",
   "author": {
-    "name": "Jack Le Hamster",
+    "name": "Vincent Le Quang",
     "email": "jacklehamster@gmail.com"
   },
   "license": "MIT",
@@ -31,7 +31,7 @@
   },
   "scripts": {
     "test": "bun test",
-    "build": "bun i && rm -rf *.tsbuildinfo && rm -rf dist/*.* && bun run bundler/bundler.ts && bun run test && bun run build:declaration",
+    "build": "bun i && rm -rf *.tsbuildinfo && rm -rf dist/*.* && bun run bundler/bundler.ts && bun link && bun run test && bun run build:declaration",
     "build:declaration": "tsc --emitDeclarationOnly --project tsconfig.types.json",
     "build:example": "cd example && bun i && bun run build && cd ..",
     "example": "cd example && bun start && cd ..",

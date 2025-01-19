@@ -1,16 +1,162 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-US">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bun Template</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sprite sheet</title>
   </head>
   <body>
-  </body>
-  <script type="module">
-    import { Hello } from './dist/index.js';
+    <div style="text-align: center">
+      <h1>Aseprite Sheet</h1>
+      <h5>
+        Using this library, you can load json files from Aseprite and extract
+        the individual sprites and animations.
+      </h5>
+    </div>
 
-    const h1 = document.body.appendChild(document.createElement("h1"));
-    h1.textContent = Hello.hello();
+    <div id="sprite-sheet-container">
+      <h1>CSS Sprite Sheet</h1>
+      <h4>
+        Sprites are shown as divs with background image, animated by changing
+        background position using CSS. This is useful for UI elements.
+      </h4>
+      <!-- prettier-ignore -->
+      <div class="code">
+        const sheet = await (new SpriteSheet((await loadSpriteSheet("random-iso.json"))!)).load();
+        // Get the div by frameIndex
+        const div = divs.appendChild(sheet.getSprite(frameIndex).generateDiv());
+        // Get animated div by tag
+        const div = divs.appendChild(sheet.getTaggedSprite(tag.name)!.generateDiv());
+      </div>
+    </div>
+    <div id="canvas-container">
+      <h1>Draw Canvas</h1>
+      <h4>
+        Sprites are drawn on a canvas. This is useful if your game is drawn with
+        Canvas 2d
+      </h4>
+      <!-- prettier-ignore -->
+      <div class="code">
+        const sheet = await (new SpriteSheet((await loadSpriteSheet("random-iso.json"))!)).load();
+        sheet.getSprite(index).draw(ctx, x, y, 0, .3);
+      </div>
+      <canvas id="canvas" width="1600" height="400"> </canvas>
+    </div>
+    <div id="canvases">
+      <h1>Make Canvas</h1>
+      <h4>
+        Each sprite is turned into a canvas. Animated using
+        requestAnimationFrame. This is useful if you need to generate a canvas
+        and extract the image for it, for display in WebGL.
+      </h4>
+      <!-- prettier-ignore -->
+      <div class="code">
+        const sheet = await (new SpriteSheet((await loadSpriteSheet("random-iso.json"))!)).load();
+        const canvas = sprite.makeCanvas(0, .3);
+        sprite.onFrameChange = () => {
+          //  redraw the label
+        };
+      </div>
+    </div>
+    <div id="blobs">
+      <h1>Make Blob</h1>
+      <h4>
+        Each sprite is an image with a blob URL. This is useful if you need the
+        image URL of a sprite.
+      </h4>
+      <!-- prettier-ignore -->
+      <div class="code">
+        const sheet = await (new SpriteSheet((await loadSpriteSheet("random-iso.json"))!)).load();
+        const blob = sheet.getSprite(index).makeBlob(0, .3);
+        const url = URL.createObjectURL(blob);
+        const img = document.createElement("img");
+        img.src = url;
+      </div>
+      <div class="blobs-container"></div>
+    </div>
+    <hr />
+    <h1>Resources:</h1>
+    <h3>Image used for spritesheet, exported from Aseprite:</h3>
+    <img alt="image for spritesheet" width="100%" src="random-iso.png" />
+    <h3>Json for spritesheet, exported from Aseprite:</h3>
+    <iframe
+      title="json file"
+      style="width: 100%; height: 500px"
+      src="random-iso.json"
+    ></iframe>
+  </body>
+  <style>
+    .code {
+      background-color: lightgray;
+      padding: 5px;
+      margin: 5px;
+      border-radius: 5px;
+      white-space: pre-wrap;
+      font-family: monospace;
+    }
+    .sprite-sheet {
+      zoom: 0.15;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .blobs-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    #canvas {
+      width: 800px;
+      height: 200px;
+    }
+    .sprite:hover,
+    .sprite-img:hover,
+    .sprite-canvas:hover {
+      background-color: lightgreen;
+      cursor: pointer;
+    }
+  </style>
+  <script type="module">
+    import {
+      divs,
+      tags,
+      drawFrame,
+      spriteCount,
+      makeCanvas,
+      makeBlob,
+      makeCanvasFromTag,
+    } from "./dist/index.js";
+
+    document.querySelector("#sprite-sheet-container").appendChild(divs);
+
+    const canvas = document.querySelector("#canvas");
+    const context = canvas.getContext("2d");
+    const ROWS = 12;
+    for (let i = 0; i < spriteCount; i++) {
+      drawFrame(context, i, (i % ROWS) * 200, Math.floor(i / ROWS) * 200);
+    }
+
+    const canvases = document.querySelector("#canvases");
+    for (let i = 0; i < spriteCount; i++) {
+      canvases.appendChild(makeCanvas(i));
+    }
+    for (let t of tags) {
+      canvases.appendChild(makeCanvasFromTag(t));
+    }
+
+    const blobs = document.querySelector(".blobs-container");
+    for (let i = 0; i < spriteCount; i++) {
+      const div = blobs.appendChild(document.createElement("div"));
+      const label = div.appendChild(document.createElement("label"));
+      label.style.position = "absolute";
+      label.textContent = i;
+
+      const blob = await makeBlob(i);
+      const url = URL.createObjectURL(blob);
+      const img = document.createElement("img");
+      img.src = url;
+      img.style.width = "80px";
+      img.style.height = "80px";
+      img.classList = "sprite-img";
+      div.appendChild(img);
+    }
   </script>
 </html>
