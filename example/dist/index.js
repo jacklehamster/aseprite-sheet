@@ -40,7 +40,7 @@ class p {
         let m = this.frames[s], a = this.spriteDefinitions[m], h = s / this.frames.length * 100;
         r += `${h}% { background-position: -${a.frame.x}px -${a.frame.y}px; } `, n += a.duration;
       }
-      r += "}", console.log(r);
+      r += "}";
       let o = document.createElement("style");
       o.innerText = r, document.head.appendChild(o), t.style.animation = `animateSprite ${n}ms steps(1) infinite`;
     }

@@ -75,7 +75,6 @@ export class Sprite {
         duration += def.duration;
       }
       keyframes += `}`;
-      console.log(keyframes);
       const styleSheet = document.createElement("style");
       styleSheet.innerText = keyframes;
       document.head.appendChild(styleSheet);
