@@ -2,7 +2,7 @@
   "name": "aseprite-sheet",
   "module": "src/index.ts",
   "description": "Component that will read spritesheet data from ASEPRITE for use in animations and games",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "keywords": [
     "animation",
     "aseprite",
