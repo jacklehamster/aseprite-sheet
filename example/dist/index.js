@@ -1,5 +1,5 @@
 // ../dist/index.js
-class p {
+class f {
   spriteSheet;
   frames;
   spriteDefinitions;
@@ -12,43 +12,43 @@ class p {
   getSpriteDefinition(e = 0) {
     return this.spriteDefinitions[this.frames[e % this.frames.length]];
   }
-  draw(e, i, t, n = 0, r = 1) {
-    let o = this.getSpriteDefinition(n), { x: s, y: m, w: a, h } = o.frame;
-    e.drawImage(this.spriteSheet.getImage(), s, m, a, h, i, t, a * r, h * r);
+  draw(e, i, t, r = 0, n = 1) {
+    let a = this.getSpriteDefinition(r), { x: o, y: h, w: m, h: p } = a.frame;
+    e.drawImage(this.spriteSheet.getImage(), o, h, m, p, i, t, m * n, p * n);
   }
   makeCanvas(e = 0, i = 1) {
-    let { w: t, h: n } = this.getSpriteDefinition(e).frame, r = document.createElement("canvas"), o = r.getContext("2d");
-    if (r.classList.add("sprite-canvas"), r.width = t * i, r.height = n * i, this.draw(o, 0, 0, e, i), this.onFrameChange?.(e), this.frames.length > 1) {
-      let s = performance.now(), m = this.spriteDefinitions[this.frames[e]], a = () => {
-        let c = performance.now() - s, f = Math.floor(c / m.duration) % this.frames.length;
-        o.clearRect(0, 0, r.width, r.height), this.draw(o, 0, 0, f, i), this.onFrameChange?.(f), requestAnimationFrame(a);
+    let { w: t, h: r } = this.getSpriteDefinition(e).frame, n = document.createElement("canvas"), a = n.getContext("2d");
+    if (n.classList.add("sprite-canvas"), n.width = t * i, n.height = r * i, this.draw(a, 0, 0, e, i), this.onFrameChange?.(e), this.frames.length > 1) {
+      let o = performance.now(), h = this.spriteDefinitions[this.frames[e]], m = () => {
+        let g = performance.now() - o, c = Math.floor(g / h.duration) % this.frames.length;
+        a.clearRect(0, 0, n.width, n.height), this.draw(a, 0, 0, c, i), this.onFrameChange?.(c), requestAnimationFrame(m);
       };
-      a();
+      m();
     }
-    return r;
+    return n;
   }
   async makeBlob(e, i = 1) {
     return new Promise((t) => {
-      this.makeCanvas(e, i).toBlob((n) => t(n));
+      this.makeCanvas(e, i).toBlob((r) => t(r));
     });
   }
   generateDiv(e = 0) {
     let i = this.getSpriteDefinition(e), t = document.createElement("div");
     if (t.classList.add("sprite"), t.style.backgroundImage = `url(${this.spriteSheet.definition.meta.image})`, t.style.backgroundPosition = `-${i.frame.x}px -${i.frame.y}px`, t.style.minWidth = `${i.frame.w}px`, t.style.minHeight = `${i.frame.h}px`, t.style.backgroundSize = `${this.spriteSheet.definition.meta.size.w}px ${this.spriteSheet.definition.meta.size.h}px`, this.frames.length > 1) {
-      let n = 0, r = "@keyframes animateSprite {";
-      for (let s = 0;s < this.frames.length; s++) {
-        let m = this.frames[s], a = this.spriteDefinitions[m], h = s / this.frames.length * 100;
-        r += `${h}% { background-position: -${a.frame.x}px -${a.frame.y}px; } `, n += a.duration;
+      let r = 0, n = "@keyframes animateSprite {";
+      for (let o = 0;o < this.frames.length; o++) {
+        let h = this.frames[o], m = this.spriteDefinitions[h], p = o / this.frames.length * 100;
+        n += `${p}% { background-position: -${m.frame.x}px -${m.frame.y}px; } `, r += m.duration;
       }
-      r += "}";
-      let o = document.createElement("style");
-      o.innerText = r, document.head.appendChild(o), t.style.animation = `animateSprite ${n}ms steps(1) infinite`;
+      n += "}";
+      let a = document.createElement("style");
+      a.innerText = n, document.head.appendChild(a), t.style.animation = `animateSprite ${r}ms steps(1) infinite`;
     }
     return t;
   }
 }
 
-class d {
+class u {
   definition;
   image = new Image;
   loadPromise;
@@ -62,25 +62,25 @@ class d {
   constructor(e) {
     this.definition = e;
     Object.entries(e.frames).forEach(([i, t]) => {
-      let [, n] = i.match(g) ?? [];
-      this.spriteDefinitions[parseInt(n)] = t;
+      let [, r] = i.match(l) ?? [];
+      this.spriteDefinitions[parseInt(r)] = t;
     });
   }
   getImage() {
     return this.image;
   }
   getSprite(e) {
-    return this.sprites[e] ?? (this.sprites[e] = new p(this, [e]));
+    return this.sprites[e] ?? (this.sprites[e] = new f(this, [e]));
   }
   getTaggedSprite(e) {
     if (this.taggedSprites[e])
       return this.taggedSprites[e];
     let i = this.definition.meta.frameTags.find((t) => t.name === e);
     if (i) {
-      let { from: t, to: n } = i, r = Math.sign(n - t) || 1, o = [];
-      for (let s = t;s <= n; s += r)
-        o.push(s);
-      return this.taggedSprites[e] = new p(this, this.calculateFrames(o, i.direction));
+      let { from: t, to: r } = i, n = Math.sign(r - t) || 1, a = [];
+      for (let o = t;o <= r; o += n)
+        a.push(o);
+      return this.taggedSprites[e] = new f(this, this.calculateFrames(a, i.direction));
     }
     return;
   }
@@ -91,13 +91,13 @@ class d {
         t.reverse();
         break;
       case "pingpong":
-        for (let n = e.length - 2;n >= 1; n--)
-          t.push(e[n]);
+        for (let r = e.length - 2;r >= 1; r--)
+          t.push(e[r]);
         break;
       case "pingpong_reverse":
         t.reverse();
-        for (let n = 1;n < e.length - 1; n++)
-          t.push(e[n]);
+        for (let r = 1;r < e.length - 1; r++)
+          t.push(e[r]);
         break;
     }
     return t;
@@ -108,20 +108,46 @@ class d {
   async load() {
     if (!this.loadPromise && !this.loaded)
       this.loadPromise = new Promise(async (e, i) => {
-        await new Promise((t, n) => {
-          this.image = new Image, this.image.onload = () => t(), this.image.onerror = n, this.image.src = this.definition.meta.image;
+        await new Promise((t, r) => {
+          this.image = new Image, this.image.onload = () => t(), this.image.onerror = r, this.image.src = this.definition.meta.image;
         }), e(), this.loadPromise = undefined;
       });
     return await this.loadPromise, this;
   }
 }
-var g = /.*\s(\d+).aseprite/;
-async function S(e) {
+var l = /.*\s(\d+).aseprite/;
+async function y(e) {
   return await fetch(e).then((t) => t.json());
 }
+var d;
+((s) => {
+  s.NORMAL = "normal";
+  s.MULTIPLY = "multiply";
+  s.SCREEN = "screen";
+  s.OVERLAY = "overlay";
+  s.DARKEN = "darken";
+  s.LIGHTEN = "lighten";
+  s.COLOR_DODGE = "color-dodge";
+  s.COLOR_BURN = "color-burn";
+  s.HARD_LIGHT = "hard-light";
+  s.SOFT_LIGHT = "soft-light";
+  s.DIFFERENCE = "difference";
+  s.EXCLUSION = "exclusion";
+  s.HUE = "hue";
+  s.SATURATION = "saturation";
+  s.COLOR = "color";
+  s.LUMINOSITY = "luminosity";
+})(d ||= {});
+var b;
+((n) => {
+  n.FORWARD = "forward";
+  n.REVERSE = "reverse";
+  n.PINGPONG = "pingpong";
+  n.PINGPONG_REVERSE = "pingpong_reverse";
+})(b ||= {});
 
 // src/index.ts
-var sheet = await new d(await S("random-iso.json")).load();
+var sheet = await new u(await y("random-iso.json")).load();
 function generateDivs() {
   const divs = document.createElement("div");
   divs.className = "sprite-sheet";
@@ -141,10 +167,10 @@ function generateDivs() {
   return divs;
 }
 var divs = generateDivs();
-function drawFrame(ctx, index, x, y) {
-  sheet.getSprite(index).draw(ctx, x, y, 0, 0.3);
+function drawFrame(ctx, index, x, y2) {
+  sheet.getSprite(index).draw(ctx, x, y2, 0, 0.3);
   ctx.font = "24px sans-serif";
-  ctx.fillText(index.toString(), x, y + 24);
+  ctx.fillText(index.toString(), x, y2 + 24);
 }
 function makeCanvasFromSprite(sprite, label, color) {
   const canvas = sprite.makeCanvas(0, 0.3);
